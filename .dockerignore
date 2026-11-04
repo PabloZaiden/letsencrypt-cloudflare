@@ -1,0 +1,6 @@
+.git
+.github
+certs
+tests
+README.md
+docker-compose.yml

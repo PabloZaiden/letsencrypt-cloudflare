@@ -1,0 +1,12 @@
+services:
+  letsencrypt:
+    image: ghcr.io/pablozaiden/letsencrypt-cloudflare:main
+    volumes:
+      - ./certs:/etc/letsencrypt
+    environment:
+      CLOUDFLARE_API_TOKEN: ${CLOUDFLARE_API_TOKEN:?Set a zone-scoped Cloudflare API Token}
+      LETSENCRYPT_DOMAIN: ${LETSENCRYPT_DOMAIN:?Set your cluster domain}
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL:?Set your ACME account email}
+      LETSENCRYPT_WILDCARD: 'true'
+      TESTING: 'true'
+    restart: unless-stopped
