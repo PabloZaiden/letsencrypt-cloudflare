@@ -12,7 +12,7 @@ RUN apk add --no-cache bash curl \
     && curl --fail --silent --show-error --location \
         "https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/${TARGETARCH}/kubectl.sha256" \
         --output /tmp/kubectl.sha256 \
-    && echo "$(cat /tmp/kubectl.sha256)  /usr/local/bin/kubectl" | sha256sum --check \
+    && echo "$(cat /tmp/kubectl.sha256)  /usr/local/bin/kubectl" | sha256sum -c - \
     && rm /tmp/kubectl.sha256 \
     && chmod 755 /usr/local/bin/kubectl \
     && kubectl version --client \
